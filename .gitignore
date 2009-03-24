@@ -1,0 +1,12 @@
+*~
+*.pdf
+*.png
+*.log
+*.aux
+*.out
+/content.tex
+/input
+/tex
+/output
+/temp
+

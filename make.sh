@@ -131,8 +131,8 @@ EOF
 				echo pdflatex "\"${abs_input_file}\"" 1\>/dev/null
 				pdflatex "${abs_input_file}" 1>/dev/null || exit 1
 	
-				echo convert "\"${pdf_output_file}\"" "\"${png_output_base}\"" 1\>/dev/null
-				convert "${pdf_output_file}" "${png_output_base}" 1>/dev/null || exit 1
+				echo convert -density 203.17x203.17 "\"${pdf_output_file}\"" "\"${png_output_base}\"" 1\>/dev/null
+				convert -density 203.17x203.17 "${pdf_output_file}" "${png_output_base}" 1>/dev/null || exit 1
 	
 				for page_number in 0 1 ; do
 					png_output_page_file="${input_base}-${page_number}.png"

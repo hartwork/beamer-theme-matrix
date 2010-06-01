@@ -53,12 +53,25 @@ for theme_file in ${THEME_FILES} ; do
 	esac
 
 	if ! ${header_written} ; then
-		echo "<html><head>" 1>"${HTML_FILE}"
-		echo "<link href='style.css' rel='stylesheet' type='text/css'>" 1>>"${HTML_FILE}"
-		echo "<title>Beamer Theme Matrix</title>" 1>>"${HTML_FILE}"
-		echo "</head><body>" 1>>"${HTML_FILE}"
-
-		printf "<table class='shots'><tr><th class='shots_odd'>&nbsp;</th>" 1>>"${HTML_FILE}"
+		cat <<EOF 1>"${HTML_FILE}"
+<html><head>
+<link href='style.css' rel='stylesheet' type='text/css'>
+<title>Beamer Theme Matrix</title>
+</head><body>
+<table class='shots'>
+<tr>
+	<th class='shots_odd'>
+		<script type="text/javascript">
+			var flattr_url = 'http://www.hartwork.org/beamer-theme-matrix/';
+			var flattr_btn='compact';
+		</script>
+		<script src="http://api.flattr.com/button/load.js" type="text/javascript"></script>
+		<noscript>
+			&amp;lt;a href="http://flattr.com/thing/12664/Beamer-Theme-Matrix" target="_blank"&amp;gt;
+			&amp;lt;img src="http://api.flattr.com/button/button-compact-static-100x17.png" title="Flattr this" border="0" /&amp;gt;&amp;lt;/a&amp;gt;
+		</noscript>
+	</th>
+EOF
 		even_col=false
 		for color_theme_file in ${COLOR_THEME_FILES} ; do
 			${even_col} && even_col=false || even_col=true

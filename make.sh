@@ -200,7 +200,7 @@ EOF
 
 			printf "</td>" 1>>"${HTML_FILE}"
 			exit 0
-		)
+		) || exit 1
 	done
 	echo "</tr>" 1>>"${HTML_FILE}"
 	header_written=true

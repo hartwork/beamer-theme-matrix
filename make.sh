@@ -136,13 +136,9 @@ EOF
 	
 				for page_number in 0 1 ; do
 					png_output_page_file="${input_base}-${page_number}.png"
-					png_output_page_file_thumbnail="${input_base}-${page_number}-thumbnail.png"
-					echo convert -resize ${thumbnail_width}x${thumbnail_height} "\"${png_output_page_file}\"" "\"${png_output_page_file_thumbnail}\"" 1\>/dev/null
-					convert -resize ${thumbnail_width}x${thumbnail_height} "${png_output_page_file}" "${png_output_page_file_thumbnail}" 1>/dev/null || exit 1
-					if ${optimize} ; then
-						echo optipng "${png_output_page_file}" "${png_output_page_file_thumbnail}" \| grep --color=always -o '"[0-9]\+\.[0-9]\+% decrease"'
-						optipng "${png_output_page_file}" "${png_output_page_file_thumbnail}" | grep --color=always -o "[0-9]\+\.[0-9]\+% decrease" || exit 1
-					fi
+					jpeg_output_page_file_thumbnail="${input_base}-${page_number}-thumbnail.jpg"
+					echo convert -resize ${thumbnail_width}x${thumbnail_height} -quality 100 "\"${png_output_page_file}\"" "\"${jpeg_output_page_file_thumbnail}\"" 1\>/dev/null
+					convert -resize ${thumbnail_width}x${thumbnail_height} -quality 100 "${png_output_page_file}" "${jpeg_output_page_file_thumbnail}" 1>/dev/null || exit 1
 				done
 	
 				by_theme_dir="${ABS_OUTPUT_DIR}"/by-theme/"${theme}"/"${color_theme}"
@@ -164,19 +160,19 @@ EOF
 			page_number=0
 			for page in title content ; do
 				png_output_page_file="${input_base}-${page_number}.png"
-				png_output_page_file_thumbnail="${input_base}-${page_number}-thumbnail.png"
+				jpeg_output_page_file_thumbnail="${input_base}-${page_number}-thumbnail.jpg"
 				
 				by_theme_link="${by_theme_dir}/${png_output_page_file}"
 				by_color_theme_link="${by_color_theme_dir}/${png_output_page_file}"
 				
 				abs_png_output_page_file="${ABS_OUTPUT_DIR}"/all/"${png_output_page_file}"
-				abs_png_output_page_file_thumbnail="${ABS_OUTPUT_DIR}"/all/"${png_output_page_file_thumbnail}"
+				abs_jpeg_output_page_file_thumbnail="${ABS_OUTPUT_DIR}"/all/"${jpeg_output_page_file_thumbnail}"
 				
-				printf "<a href='all/${png_output_page_file}'><img src='all/${png_output_page_file_thumbnail}' width='${thumbnail_width}' height='${thumbnail_height}' class='slideshot'>" 1>>"${HTML_FILE}"
+				printf "<a href='all/${png_output_page_file}'><img src='all/${jpeg_output_page_file_thumbnail}' width='${thumbnail_width}' height='${thumbnail_height}' class='slideshot'>" 1>>"${HTML_FILE}"
 				
 				if ! ${simulate} ; then
 					mv "${png_output_page_file}" "${abs_png_output_page_file}"
-					mv "${png_output_page_file_thumbnail}" "${abs_png_output_page_file_thumbnail}"
+					mv "${jpeg_output_page_file_thumbnail}" "${abs_jpeg_output_page_file_thumbnail}"
 				
 					mkdir -p "${ABS_OUTPUT_DIR}/by-colortheme/${color_theme}/by-page/${page}/"
 					mkdir -p "${ABS_OUTPUT_DIR}/by-page/${page}/all/"

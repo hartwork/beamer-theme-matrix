@@ -75,7 +75,6 @@ EOF
 		even_col=false
 		for color_theme_file in ${COLOR_THEME_FILES} ; do
 			${even_col} && even_col=false || even_col=true
-			total_number=$((total_number + 1))
 			color_theme=$(sed -e 's|^beamercolortheme||' -e 's|\.sty$||' <<< "$(basename "${color_theme_file}")")
 
 			case ${color_theme} in
@@ -98,14 +97,15 @@ EOF
 	even_col=false
 	for color_theme_file in ${COLOR_THEME_FILES} ; do
 		${even_col} && even_col=false || even_col=true
-		total_number=$((total_number + 1))
 		color_theme=$(sed -e 's|^beamercolortheme||' -e 's|\.sty$||' <<< "$(basename "${color_theme_file}")")
 
-		percent=$((total_number * 99 / total_count))
+		percent=$((total_number * 100 / total_count))
+		total_number=$((total_number + 1))
 
 		case ${color_theme} in
 		structure|sidebartab)
 			total_count=$((total_count - 1))
+			total_number=$((total_number - 1))
 			continue
 			;;
 		*) ;;

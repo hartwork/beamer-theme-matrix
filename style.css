@@ -1,12 +1,12 @@
 body { margin:0 ; padding:0 }
 
-table.shots { border-collapse:collapse ; margin-bottom:20px; background-color:#f8f8f8 }
+table.shots { border-collapse:collapse ; margin-bottom:20px; background-color:#777777 }
 
 img.slideshot { margin:1px ; border: 1px solid #000000 ; margin:2px }
-td.shots_odd { margin:0px ; padding:2px; background-color:#efefef }
-td.shots_even { margin:0px ; padding:2px; background-color:#f8f8f8 }
-th.shots_odd { margin:0px ; padding:2px; background-color:#efefef }
-th.shots_even { margin:0px ;  padding:2px; background-color:#f8f8f8 }
+td.shots_odd { margin:0px ; padding:4px; background-color:#808080 }
+td.shots_even { margin:0px ; padding:4px; background-color:#777777 }
+th.shots_odd { margin:0px ; padding:4px; background-color:#808080; color:#efffff }
+th.shots_even { margin:0px ;  padding:4px; background-color:#777777; color:#efffff }
 
 
 

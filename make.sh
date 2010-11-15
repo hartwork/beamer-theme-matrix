@@ -129,7 +129,9 @@ EOF
 
 			if ! ${simulate} ; then
 				echo pdflatex "\"${abs_input_file}\"" 1\>/dev/null
-				pdflatex "${abs_input_file}" 1>/dev/null || exit 1
+				for i in {1..2}; do
+					pdflatex "${abs_input_file}" 1>/dev/null || exit 1
+				done
 	
 				echo convert -density 203.17x203.17 "\"${pdf_output_file}\"" "\"${png_output_base}\"" 1\>/dev/null
 				convert -density 203.17x203.17 "${pdf_output_file}" "${png_output_base}" 1>/dev/null || exit 1

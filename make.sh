@@ -139,6 +139,12 @@ EOF
 				for page_number in 0 1 ; do
 					png_output_page_file="${input_base}-${page_number}.png"
 					jpeg_output_page_file_thumbnail="${input_base}-${page_number}-thumbnail.jpg"
+
+					if ${optimize} ; then
+						echo optipng "${png_output_page_file}" \| grep --color=always -o '"[0-9]\+\.[0-9]\+% decrease"'
+						optipng "${png_output_page_file}" | grep --color=always -o "[0-9]\+\.[0-9]\+% decrease" || exit 1
+					fi
+
 					echo convert -resize ${thumbnail_width}x${thumbnail_height} -quality 100 "\"${png_output_page_file}\"" "\"${jpeg_output_page_file_thumbnail}\"" 1\>/dev/null
 					convert -resize ${thumbnail_width}x${thumbnail_height} -quality 100 "${png_output_page_file}" "${jpeg_output_page_file_thumbnail}" 1>/dev/null || exit 1
 				done

@@ -1,5 +1,5 @@
 #! /usr/bin/false
-THEME_DIR=/usr/share/texmf-site/tex/latex/beamer/themes
+THEME_DIR=/usr/share/texmf-site/tex/latex/beamer/base/themes
 THEME_FILES=${THEME_DIR}/theme/beamertheme*.sty
 COLOR_THEME_FILES=${THEME_DIR}/color/beamercolortheme*.sty
 

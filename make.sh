@@ -176,7 +176,7 @@ EOF
 				abs_png_output_page_file="${ABS_OUTPUT_DIR}"/all/"${png_output_page_file}"
 				abs_jpeg_output_page_file_thumbnail="${ABS_OUTPUT_DIR}"/all/"${jpeg_output_page_file_thumbnail}"
 				
-				printf "<a href='all/${png_output_page_file}'><img src='all/${jpeg_output_page_file_thumbnail}' width='${thumbnail_width}' height='${thumbnail_height}' class='slideshot'>" 1>>"${HTML_FILE}"
+				printf "<a href='all/${png_output_page_file}'><img title='Theme &quot;${theme}&quot;, color theme &quot;${color_theme}&quot;' src='all/${jpeg_output_page_file_thumbnail}' width='${thumbnail_width}' height='${thumbnail_height}' class='slideshot'>" 1>>"${HTML_FILE}"
 				
 				if ! ${simulate} ; then
 					mv "${png_output_page_file}" "${abs_png_output_page_file}"
